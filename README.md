@@ -1,8 +1,17 @@
-# DackPack - Nucleic Acid Analysis
+# Nucleic Acid Analysis Application
 
-DackPack is a python-based graphical user interface for the NUPACK<sup>1,2</sup> package, designed to aid nucleic acid sequence design and analysis. As demonstarted below, it allows users to input nucleic acid sequences and parameters, run thermodynamic calculations, and visualise the resulting structures via NucDraw<sup>3</sup>.
+This is a Python-based graphical user interface for the NUPACK<sup>1,2</sup> package, designed to aid nucleic acid sequence design and analysis. As demonstrated below, it allows users to input nucleic acid sequences and parameters, run thermodynamic simulations, and visualise the resulting structures via NucDraw<sup>3</sup>.
 
 Developed by Chelsea Dack (chelsea.dack.24@ucl.ac.uk), PhD student in the [Booth group](https://boothlab.uk/).
+
+## How the model works
+It predicts how a population of DNA or RNA strands will fold and bind together in a test tube at equilibrium, showing you not just the single most stable shape, but the probability of all shapes and the final concentration of every complex.
+1. You give the model nucleic acid sequences, their concentrations, reaction temperature and salt condition. It then predicts what structures individual strands/complexes could form.
+2. For each structure, it uses a nearest neighbour thermodynamic model to calculate the free energies of individual structural motifs. The parameters for this are derived experimentally e.g. by UV melting curves to derive entropy and enthalpy, and hence the free energies.
+3. It sums these motif free energies to get the free energy of that specific structure.
+4. It uses dynamic programming algorithms to efficiently calculate the partition function of these structures. It uses that and the Boltzmann distribution to find the probability that a base pairing exists.
+5. It upscales this analysis, calculating the partition coefficient of each strand/complex and uses free energy minimisation to determine the concentrations of these at equilibrium.
+6. The interface this script encodes allows non-programmers to access the model. It will return a bar chart figure of the dominant complexes that are most likely to form at equilibrium. You can then choose a complex to visualise its most likely structure.
 
 ## In Developement
 - Integration with Multistrand<sup>4,5</sup> for kinetic simulations
