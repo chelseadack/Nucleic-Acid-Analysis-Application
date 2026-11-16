@@ -1,5 +1,9 @@
 # Nucleic Acid Analysis Application
 
+[![tests](https://github.com/chelseadack/Nucleic-Acid-Analysis-Application/actions/workflows/tests.yml/badge.svg)](https://github.com/chelseadack/Nucleic-Acid-Analysis-Application/actions/workflows/tests.yml)
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
 This is a Python-based graphical user interface for the NUPACK<sup>1,2</sup> package, designed to aid nucleic acid sequence design and analysis. As demonstrated below, it allows users to input nucleic acid sequences and parameters, run thermodynamic simulations, and visualise the resulting structures via NucDraw<sup>3</sup>.
 
 Developed by Chelsea Dack (chelsea.dack.24@ucl.ac.uk), PhD student in the [Booth group](https://boothlab.uk/).
@@ -13,29 +17,25 @@ It predicts how a population of DNA or RNA strands will fold and bind together i
 5. It upscales this analysis, calculating the partition coefficient of each strand/complex and uses free energy minimisation to determine the concentrations of these at equilibrium.
 6. The interface this script encodes allows non-programmers to access the model. It will return a bar chart figure of the dominant complexes that are most likely to form at equilibrium. You can then choose a complex to visualise its most likely structure.
 
-## In Developement
+## In Development
 - Integration with Multistrand<sup>4,5</sup> for kinetic simulations
-- Update to latest NUPACK<sup>1,2</sup> version to enable DNA/RNA hydrids, OMe RNA, and wider salt conditions
+- Update to latest NUPACK<sup>1,2</sup> version to enable DNA/RNA hybrids, OMe RNA, and wider salt conditions
 
 ## Installation
 1. First, make sure the following requirements are installed on your host system:
    - Python 3.10+
    - [NUPACK 4.0.2+](https://www.nupack.org/download/overview) (see NUPACK installation instructions [here](https://docs.nupack.org/start/#installation-requirements))
-2. If not already installed, also install the following packages:
-    - `pip install pandas`
-    - `pip install numpy`
-    - `pip install matplotlib`
-    - `pip install PySide6`
-    - `pip install nucdraw`
+2. Install the other Python packages (matplotlib, PySide6, nucdraw, pytest):
+    - `pip install -r requirements.txt`
 
 ## Use
 To launch DackPack on MacOS:
-   - Open a new Terminal window and type this line, substituting the location of the DackPack.py script:
+   - Open a new Terminal window and type this line, substituting the location of the DackPack.py script (`dackpack_core.py` must be in the same folder):
      - `python3 ~/insert_path_to/DackPack.py`
    - Note: A standalone DackPack application (not included here) has also been developed for MacOS. This allows users to launch the GUI without using Terminal. The NUPACK module still requires separate installation however, due to licence restrictions.
 
 To launch DackPack on Windows (using Ubuntu, assuming NUPACK installation as described [here](https://docs.nupack.org/start/#installation-requirements)):
-   - Move the DackPack.py script into Ubuntu's Linux home directory
+   - Move the DackPack.py and dackpack_core.py scripts into Ubuntu's Linux home directory
    - Open a new Ubuntu window and type this line:
      - `python3 DackPack.py`
 
@@ -47,6 +47,22 @@ To analyse nucleic acid sequences:
 3. Click 'Plot Structure' for structure visualisation of a chosen complex (using NucDraw<sup>3</sup>). This window will appear, where individual bases / strand backbones are coloured by identity and base pairs are coloured by MFE probability:
 <img src="example_imgs/example_structure.png" width="400" height="300">
 Figure appearance can be customised, for example by changing base size, structure rotation, and figure zoom.
+
+## Project structure
+| File | Purpose |
+|---|---|
+| `DackPack.py` | The GUI: user input, NUPACK analysis, equilibrium bar chart and NucDraw structure plot |
+| `dackpack_core.py` | GUI-independent logic: sequence validation and conversion, complex labels, dot-bracket parsing |
+| `test_dackpack_core.py` | Unit tests for `dackpack_core.py` |
+| `example_imgs/` | Screenshots used in this README |
+
+Input is checked before it is sent to NUPACK. Empty sequences, invalid bases, repeated strand names and names containing `+ ( ) < >` are reported in a pop-up instead of crashing the app or giving ambiguous complex labels.
+
+## Running the tests
+The core logic is covered by unit tests, which run automatically on GitHub Actions on every push. To run them locally:
+```
+python3 -m pytest
+```
 
 ## References:
 1. M.E. Fornace, N.J. Porubsky, and N.A. Pierce (2020). A unified dynamic programming framework for the analysis of interacting nucleic acid strands: enhanced models, scalability, and speed. ACS Synth Biol, 9:2665-2678, 2020.
