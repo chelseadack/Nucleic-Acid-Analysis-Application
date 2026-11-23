@@ -1,11 +1,11 @@
-"""DackPack: a desktop GUI for NUPACK equilibrium analysis and NucDraw structure plots.
+"""Nucleic Acid Analysis Application
 
 Enter DNA or RNA strands, their concentrations, the temperature and salt conditions, then:
   1. Run Analysis   -> NUPACK calculates the equilibrium concentration of every complex (bar chart)
   2. Plot Structure -> NucDraw draws the MFE structure of a chosen complex, with base pairs
                        coloured by their equilibrium pair probability
 
-Run with:  python3 DackPack.py
+Run with:  python3 GUI_run_script.py
 """
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ from matplotlib.lines import Line2D
 from nucdraw import NucDraw  # 10.5281/zenodo.15352138
 from nupack import Model, SetSpec, Strand, Tube, tube_analysis
 
-from dackpack_core import (M_TO_UM, MIN_CONCENTRATION_M, UM_TO_M, StrandInput, complex_label, complex_sort_key,
+from GUI_logic import (M_TO_UM, MIN_CONCENTRATION_M, UM_TO_M, StrandInput, complex_label, complex_sort_key,
     convert_sequence, default_strand_name, dot_bracket_pairs, find_input_problems, has_only_valid_bases)
 
 # ------------------------------
