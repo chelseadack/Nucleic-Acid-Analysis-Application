@@ -1,9 +1,9 @@
 """Nucleic Acid Analysis Application
 
 Enter DNA or RNA strands, their concentrations, the temperature and salt conditions, then:
-  1. Run Analysis   -> NUPACK calculates the equilibrium concentration of every complex (bar chart)
+  1. Run Analysis   -> NUPACK calculates the equilibrium concentration of every complex (bar chart).
   2. Plot Structure -> NucDraw draws the MFE structure of a chosen complex, with base pairs
-                       coloured by their equilibrium pair probability
+                       coloured by their equilibrium pair probability.
 
 Run with:  python3 GUI_run_script.py
 """
