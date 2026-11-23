@@ -1,7 +1,7 @@
-"""Core logic for DackPack, separate from the GUI.
+"""Core logic for the GUI.
 
 These functions do not import Qt, NUPACK or NucDraw, so they can be unit tested
-(see test_dackpack_core.py) without installing the full application.
+(see test_GUI_logic.py) without installing the full application.
 """
 from __future__ import annotations
 
