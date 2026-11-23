@@ -1,7 +1,7 @@
-"""Unit tests for dackpack_core. Run with:  python3 -m pytest"""
+"""Unit tests for GUI_logic. Run with:  python3 -m pytest"""
 import pytest
 
-from dackpack_core import (StrandInput, complex_label, complex_sort_key, convert_sequence, default_strand_name,
+from GUI_logic import (StrandInput, complex_label, complex_sort_key, convert_sequence, default_strand_name,
     dot_bracket_pairs, find_input_problems, has_only_valid_bases)
 
 
