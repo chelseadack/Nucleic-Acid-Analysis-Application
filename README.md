@@ -32,7 +32,7 @@ It predicts how a population of DNA or RNA strands will fold and bind together i
 To launch Pack on MacOS:
    - Open a new Terminal window and type this line, substituting the location of the GUI_run_script.py script (`GUI_logic.py` must be in the same folder):
      - `python3 ~/insert_path_to/GUI_run_script.py`
-   - Note: A standalone application (not included here) has also been developed for MacOS. This allows users to launch the GUI without using Terminal. The NUPACK module still requires separate installation however, due to licence restrictions.
+   - Note: A standalone application (not included here) has also been developed for MacOS. This allows users to launch the GUI without using Terminal. The NUPACK module still requires separate installation, however, due to licence restrictions.
 
 To launch the GUI on Windows (using Ubuntu, assuming NUPACK installation as described [here](https://docs.nupack.org/start/#installation-requirements)):
    - Move the GUI_run_script.py and GUI_logic.py scripts into Ubuntu's Linux home directory
@@ -40,7 +40,7 @@ To launch the GUI on Windows (using Ubuntu, assuming NUPACK installation as desc
      - `python3 GUI_run_script.py`
 
 To analyse nucleic acid sequences:
-1. Upon launching the script, this window will appear, where you can input your parameters and nucleic acid sequence(s):
+1. Upon launching the `GUI_run_script.py`, this window will appear, where you can input your parameters and nucleic acid sequence(s):
 <img src="example_imgs/user_interface.png" width="250" height="350">
 2. Click 'Run Analysis' for calculation of equilibrium concentrations (via NUPACK<sup>1,2</sup>). This window will appear:
 <img src="example_imgs/example_equilibrium.png" width="600" height="150">
@@ -48,18 +48,8 @@ To analyse nucleic acid sequences:
 <img src="example_imgs/example_structure.png" width="400" height="300">
 Figure appearance can be customised, for example by changing base size, structure rotation, and figure zoom.
 
-## Project structure
-| File | Purpose |
-|---|---|
-| `GUI_run_script.py` | The GUI: user input, NUPACK analysis, equilibrium bar chart and NucDraw structure plot |
-| `GUI_logic.py` | GUI-independent logic: sequence validation and conversion, complex labels, dot-bracket parsing |
-| `test_GUI_logic.py` | Unit tests for `GUI_logic.py` |
-| `example_imgs/` | Screenshots used in this README |
-
-Input is checked before it is sent to NUPACK. Empty sequences, invalid bases, repeated strand names and names containing `+ ( ) < >` are reported in a pop-up instead of crashing the app or giving ambiguous complex labels.
-
-## Running the tests
-The core logic is covered by unit tests, which run automatically on GitHub Actions on every push. To run them locally:
+## Unit tests
+User input is checked before it is sent to NUPACK. Empty sequences, invalid bases, repeated strand names and names containing `+ ( ) < >` are reported in a pop-up instead of crashing the app or giving ambiguous complex labels. This core logic used by the interface is covered by unit tests, included in `test_GUI_logic.py`, which run automatically on GitHub Actions on every push. To run them locally:
 ```
 python3 -m pytest
 ```
